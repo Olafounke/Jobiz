@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ job.title }}{% endblock %}
+
+{% block body %}
+<section class="text-gray-100 bg-gray-900 body-font">
+  <div class="container px-5 py-12 mx-auto">
+    <h1 class="text-3xl mb-4 font-bold text-white">{{ job.title }}</h1>
+    <p class="text-gray-400 text-sm">
+      {{ job.city }}, {{ job.country }} | {{ job.type.name }} | {{ job.salaryRange }} €/an
+    </p>
+    {% if job.remoteAllowed %}
+      <p class="text-green-400 text-sm mt-1">Télétravail possible</p>
+    {% endif %}
+
+    <div class="mt-4 text-gray-300">{{ job.description|nl2br }}</div>
+
+    <div class="mt-10">
+      <h2 class="text-xl font-semibold text-white mb-2">Postuler à cette offre</h2>
+      <form action="{{ path('app_apply', {jobId: job.id}) }}" method="post">
+        <textarea name="coverLetter" rows="5" class="w-full p-3 rounded bg-gray-800 text-white mb-4" placeholder="Votre lettre de motivation"></textarea>
+        <button type="submit" class="bg-teal-600 text-white px-6 py-2 rounded hover:bg-teal-500">Envoyer</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

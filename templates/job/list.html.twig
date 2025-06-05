@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offres d'emploi{% endblock %}
+
+{% block body %}
+<section class="text-gray-100 bg-gray-900 body-font">
+  <div class="container px-5 py-12 mx-auto">
+    <h1 class="text-3xl mb-6 text-white font-semibold">Offres disponibles</h1>
+
+    {% for job in jobs %}
+      <div class="bg-gray-800 p-6 mb-4 rounded-xl">
+        <h2 class="text-xl font-bold text-teal-400">
+          <a href="{{ path('app_job_show', {id: job.id}) }}">{{ job.title }}</a>
+        </h2>
+        <p class="text-sm text-gray-400">
+          {{ job.city }}, {{ job.country }} |
+          {{ job.type.name }} |
+          {{ job.salaryRange }} €/an
+          {% if job.remoteAllowed %} | Télétravail possible {% endif %}
+        </p>
+        <p class="mt-2 text-gray-300">{{ job.description[:150] ~ '...' }}</p>
+      </div>
+    {% else %}
+      <p>Aucune offre disponible pour le moment.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
