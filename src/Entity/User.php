@@ -36,8 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $role = null;
+ 
 
     /**
      * @var Collection<int, Application>
@@ -135,17 +134,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getRole(): ?string
-    {
-        return $this->role;
-    }
 
-    public function setRole(string $role): static
-    {
-        $this->role = $role;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Application>
