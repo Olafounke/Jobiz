@@ -1,0 +1,32 @@
+<turbo-frame id="application-form">
+    <div class="container mb-8 px-5 mx-auto max-w-2xl">
+    {% if application.id %}
+       <div class="p-4 mb-5 text-sm text-blue-100 rounded-lg bg-gray-700 dark:bg-gray-800 dark:text-blue-500" role="alert">
+        <span class="font-medium">Thanks for your application!</span>
+      </div>
+    {% else %}
+        <form method="post" action="{{ path('app_application_form', { id: jobId }) }}" class="text-white bg-gray-800 p-8 rounded-lg" data-turbo-frame="application-form">
+           
+            <div class="mb-4">
+                <label for="{{ form.coverLetter.vars.id }}" class="block text-white font-semibold mb-2">
+                    Cover Letter
+                </label>
+                {{ form_widget(form.coverLetter) }}
+                {% if form_errors(form.coverLetter) %}
+                <div class="p-2 mt-1 text-sm text-red-800 rounded bg-red-50" role="alert">
+                    {{ form_errors(form.coverLetter) }}
+                </div>
+                {% endif %}
+            </div>
+
+            {{ form_row(form._token) }}
+
+            <button type="submit"
+                    class="cursor-pointer px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                Submit Application
+            </button>
+
+        </form>
+    {% endif %}
+    </div>
+</turbo-frame>

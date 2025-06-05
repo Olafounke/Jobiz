@@ -34,20 +34,14 @@ class Job
     #[ORM\Column(length: 255)]
     private ?string $salaryRange = null;
 
-    /**
-     * @var Collection<int, Application>
-     */
     #[ORM\OneToMany(targetEntity: Application::class, mappedBy: 'job')]
     private Collection $applications;
 
     #[ORM\ManyToOne(inversedBy: 'jobs')]
     private ?Type $type = null;
 
-    /**
-     * @var Collection<int, Category>
-     */
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'jobs')]
-    private Collection $category;
+    private Collection $categories;
 
     #[ORM\ManyToOne(inversedBy: 'jobs')]
     private ?Company $company = null;
@@ -55,7 +49,7 @@ class Job
     public function __construct()
     {
         $this->applications = new ArrayCollection();
-        $this->category = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -71,7 +65,6 @@ class Job
     public function setTitle(string $title): static
     {
         $this->title = $title;
-
         return $this;
     }
 
@@ -83,7 +76,6 @@ class Job
     public function setDescription(string $description): static
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -95,7 +87,6 @@ class Job
     public function setCountry(string $country): static
     {
         $this->country = $country;
-
         return $this;
     }
 
@@ -107,7 +98,6 @@ class Job
     public function setCity(string $city): static
     {
         $this->city = $city;
-
         return $this;
     }
 
@@ -119,7 +109,6 @@ class Job
     public function setRemoteAllowed(bool $remoteAllowed): static
     {
         $this->remoteAllowed = $remoteAllowed;
-
         return $this;
     }
 
@@ -131,7 +120,6 @@ class Job
     public function setSalaryRange(string $salaryRange): static
     {
         $this->salaryRange = $salaryRange;
-
         return $this;
     }
 
@@ -156,7 +144,6 @@ class Job
     public function removeApplication(Application $application): static
     {
         if ($this->applications->removeElement($application)) {
-            // set the owning side to null (unless already changed)
             if ($application->getJob() === $this) {
                 $application->setJob(null);
             }
@@ -173,22 +160,21 @@ class Job
     public function setType(?Type $type): static
     {
         $this->type = $type;
-
         return $this;
     }
 
     /**
      * @return Collection<int, Category>
      */
-    public function getCategory(): Collection
+    public function getCategories(): Collection
     {
-        return $this->category;
+        return $this->categories;
     }
 
     public function addCategory(Category $category): static
     {
-        if (!$this->category->contains($category)) {
-            $this->category->add($category);
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
         }
 
         return $this;
@@ -196,8 +182,7 @@ class Job
 
     public function removeCategory(Category $category): static
     {
-        $this->category->removeElement($category);
-
+        $this->categories->removeElement($category);
         return $this;
     }
 
@@ -209,7 +194,6 @@ class Job
     public function setCompany(?Company $company): static
     {
         $this->company = $company;
-
         return $this;
     }
 }

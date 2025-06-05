@@ -19,10 +19,43 @@
           {% if job.remoteAllowed %} | Télétravail possible {% endif %}
         </p>
         <p class="mt-2 text-gray-300">{{ job.description[:150] ~ '...' }}</p>
-      </div>
+      
+     
+      {% for job in jobs %}
+        {% include 'job/_job_item.html.twig' with {'job': job} %}
+      {% else %}
+        <p class="text-center w-full text-gray-500">Aucune offre d'emploi disponible pour le moment.</p>
+      {% endfor %}
+    </div>
+  
+</section>
     {% else %}
       <p>Aucune offre disponible pour le moment.</p>
     {% endfor %}
   </div>
 </section>
+{#
+<form method="get" class="mb-6 bg-gray-800 p-4 rounded">
+  <div class="flex flex-wrap gap-4 items-center">
+    <input type="text" name="country" value="{{ app.request.get('country') }}" placeholder="Pays"
+      class="px-3 py-2 bg-gray-700 rounded text-white">
+
+    <label class="inline-flex items-center text-white">
+      <input type="checkbox" name="remote" value="1" {% if app.request.get('remote') %}checked{% endif %}>
+      <span class="ml-2">Télétravail</span>
+    </label>
+
+    <select name="category" class="bg-gray-700 text-white rounded px-2 py-2">
+      <option value="">Toutes les catégories</option>
+      {% for category in categories %}
+        <option value="{{ category.id }}" {% if app.request.get('category') == category.id %}selected{% endif %}>
+          {{ category.name }}
+        </option>
+      {% endfor %}
+    </select>
+
+    <button type="submit" class="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-500">Filtrer</button>
+  </div>
+</form>
+#}
 {% endblock %}

@@ -14,24 +14,31 @@
     <body class="slate-700">
     <header class="text-gray-400 bg-gray-950 body-font">
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-            <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0" href="#">
-                <img width="120" src="{{ asset('images/logo-jobiz.svg') }}" alt="Jobiz">
+            <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0" href="{{ path('app_home') }}">
+                <img width="120" src="{{ asset('images/logo-jobiz.png') }}" alt="Logo Jobiz">
                 <span class="ml-3 text-xl">Jobiz</span>
             </a>
             <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-                <a class="mr-5 hover:text-white" href="{{ path('app_home') }}">Accueil</a>
-                <a class="mr-5 hover:text-white" href="{{ path('app_about') }}">À propos</a>
-                <a class="mr-5 hover:text-white" href="{{ path('app_job_list') }}">Offres</a>
-                <a class="mr-5 hover:text-white" href="#">Applications</a>
-            </nav>
+    <a class="mr-5 hover:text-white" href="{{ path('app_home') }}">Accueil</a>
+    <a class="mr-5 hover:text-white" href="{{ path('app_about') }}">À propos</a>
+    <a class="mr-5 hover:text-white" href="{{ path('app_job_list') }}">Offres</a>
+    
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="mr-5 hover:text-white text-teal-400 font-semibold" href="{{ path('admin') }}">Admin</a>
+    {% endif %}
+</nav>
             <div class="flex md:flex-nowrap flex-wrap justify-center items-end md:justify-start px-3">
                 <div class="relative sm:w-64 w-40 sm:mr-4 mr-2">
                     <input placeholder="Recherche" type="text" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:ring-2 focus:ring-teal-600 focus:bg-transparent focus:border-teal-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                 </div>
                 <button class="inline-flex text-white bg-teal-600 border-0 py-2 px-6 focus:outline-none hover:bg-teal-700 rounded">OK</button>
             </div>
-            <a class="inline-flex items-center bg-gray-800 border-0 py-2 px-3 ml-10 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0" href="{{ path('app_login') }}">Connexion</a>
-        </div>
+
+            {% if app.user %}
+                <a class="inline-flex items-center bg-gray-800 border-0 py-2 px-3 ml-10 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0" href="{{ path('app_logout') }}">Déconnexion</a>
+            {% else %}
+                <a class="inline-flex items-center bg-gray-800 border-0 py-2 px-3 ml-10 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0" href="{{ path('app_login') }}">Connexion </a>
+            {% endif %}
     </header>
 
         {% block body %}{% endblock %}
@@ -53,8 +60,14 @@
         </svg>
       </a>
       <a class="ml-3 text-gray-400 hover:text-teal-500" href="#">
-        <svg fill="curre
+       <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewbox="0 0 24 24">
+							<path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+							<circle cx="4" cy="4" r="2" stroke="none"></circle>
+						</svg>
+					</a>
+				</span>
+			</div>
+		</footer>
 
-
-    </body>
+	</body>
 </html>

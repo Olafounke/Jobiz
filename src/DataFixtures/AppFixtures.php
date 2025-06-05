@@ -23,14 +23,14 @@ class AppFixtures extends Fixture
         $admin->setName('Ruth Biaou');
         $admin->setEmail('biaoufunke@gmail.com');
         $admin->setRoles(["ROLE_ADMIN"]);
-        $admin->setPassword($this->hasher->hashPassword($admin, 'adminp$2y$13$7UIXveuHCyVbDN6c36YljedbMRQWkc8IgZrAHK7ua4qz8r1NqX2R.ss'));
+        $admin->setPassword($this->hasher->hashPassword($admin, '$2y$13$1vYoea.jbKyPViNTTFWUq.OXPpgXnY37.FeMzLWs2Yuo0mzulm/Tm'));
         $manager->persist($admin);
 
         $user = new User();
         $user->setName('Audrey Biaou');
         $user->setEmail('audrey.biaou@gmail.com');
         $user->setRoles(["ROLE_USER"]);
-        $user->setPassword($this->hasher->hashPassword($user, '$2y$13$K9Q4ho6PoZ10U.b1x7Ak9.HdpbNmE19iCcOuDmeu0DX019//ADnYO'));
+        $user->setPassword($this->hasher->hashPassword($user, '$2y$13$MfhdD2FoiSjLNMmbO9O2HucAlG6cGt2cakDJzrWIq31FJ0A93nsuy'));
         $manager->persist($user);
 
         // 2. TYPES
