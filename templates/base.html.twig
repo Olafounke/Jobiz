@@ -11,7 +11,48 @@
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
-    <body>
+    <body class="slate-700">
+    <header class="text-gray-400 bg-gray-950 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0" href="{{ path('homepage') }}">
+                <img width="120" src="{{ asset('images/logo-jobiz.svg') }}" alt="Jobiz">
+                <span class="ml-3 text-xl">Jobiz</span>
+            </a>
+            <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+                <a class="mr-5 hover:text-white" href="{{ path('homepage') }}">Accueil</a>
+                <a class="mr-5 hover:text-white" href="{{ path('job_list') }}">Offres</a>
+                <a class="mr-5 hover:text-white" href="{{ path('about') }}">À propos</a>
+                <a class="mr-5 hover:text-white" href="{{ path('contact') }}">Contact</a>
+            </nav>
+            <div class="flex md:flex-nowrap flex-wrap justify-center items-end md:justify-start px-3">
+                <div class="relative sm:w-64 w-40 sm:mr-4 mr-2">
+                    <input placeholder="Recherche" type="text" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:ring-2 focus:ring-teal-600 focus:bg-transparent focus:border-teal-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                </div>
+                <button class="inline-flex text-white bg-teal-600 border-0 py-2 px-6 focus:outline-none hover:bg-teal-700 rounded">OK</button>
+            </div>
+            <a class="inline-flex items-center bg-gray-800 border-0 py-2 px-3 ml-10 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0" href="{{ path('app_login') }}">Connexion</a>
+        </div>
+    </header>
+
         {% block body %}{% endblock %}
+
+        <footer class="text-gray-400 bg-gray-950 body-font">
+        <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+            <a class="flex title-font font-medium items-center md:justify-start justify-center text-white" href="{{ path('app_home') }}">
+                <img width="70" src="{{ asset('images/logo-jobiz.png') }}" alt="Logo Jobiz">
+                <span class="ml-2">Jobiz</span>
+            </a>
+            <p class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">
+                © {{ "now"|date("Y") }} Jobiz. Plateforme d'emploi IT.
+            </p>
+            <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+                <a class="text-gray-400 hover:text-teal-600" href="#"><svg fill="currentColor" ...></svg></a>
+                <a class="ml-3 text-gray-400 hover:text-teal-600" href="#"><svg fill="currentColor" ...></svg></a>
+                <a class="ml-3 text-gray-400 hover:text-teal-600" href="#"><svg fill="none" ...></svg></a>
+                <a class="ml-3 text-gray-400 hover:text-teal-600" href="#"><svg fill="currentColor" ...></svg></a>
+            </span>
+        </div>
+    </footer>
+    {% block javascripts %}{% endblock %}
     </body>
 </html>
